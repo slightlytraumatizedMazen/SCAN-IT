@@ -1,0 +1,31 @@
+workflows:
+  flutter-ios-simulator:
+    name: Flutter iOS Simulator
+    environment:
+      flutter: stable
+      xcode: latest
+    scripts:
+      - name: Clean and get dependencies
+        script: |
+          flutter clean
+          flutter pub get
+      - name: Build iOS simulator app
+        script: |
+          flutter build ios --simulator
+    artifacts:
+      - build/ios/iphonesimulator/Runner.app
+
+  flutter-android-simulator:
+    name: Flutter Android Emulator
+    environment:
+      flutter: stable
+    scripts:
+      - name: Clean and get dependencies
+        script: |
+          flutter clean
+          flutter pub get
+      - name: Build Android debug apk
+        script: |
+          flutter build apk --debug
+    artifacts:
+      - build/app/outputs/flutter-apk/app-debug.apk
